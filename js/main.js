@@ -1,9 +1,23 @@
 /* JS Document */
 function initMap() {
+	const myLatLng = { lat: -10.7001433, lng: -37.4339916 };
+
 	var map = new google.maps.Map(document.getElementById("google_map"), {
-		center: { lat: -10.7233683485317, lng: -37.41957262851468 },
-		zoom: 12
+		center: myLatLng,
+		zoom: 18,
 	});
+	var marker = new google.maps.Marker({
+		position: myLatLng,
+		map: map,
+		animation: google.maps.Animation.DROP,
+		title: "By Brasil"
+	});
+	const contentString =
+		'<h1 class="card-title">BY BRASIL</h1>';
+	const infowindow = new google.maps.InfoWindow({
+		content: contentString
+	});
+	infowindow.open(map, marker);
 }
 
 $(document).ready(function()
@@ -130,18 +144,8 @@ $(document).ready(function()
 
 	function initHomeSlider()
 	{
-		if($('.home_slider').length)
-		{
-			var homeSlider = $('.home_slider');
-			homeSlider.owlCarousel(
-			{
-				items:1,
-				loop:true,
-				autoplay:true,
-				nav:false,
-				dots:false,
-				smartSpeed:1200
-			});
-		}
+		$('.carousel').carousel({
+			interval: 3000
+		});
 	}
 });
